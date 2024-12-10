@@ -44,29 +44,29 @@ def get_order_sum(conn, month):
 
 
 # BEGIN reference solution
-def get_order_sum(conn, month):
-    template = "Покупатель {customer} совершил покупок на сумму {total}".format
-    with conn.cursor(cursor_factory=DictCursor) as cur:
-        query = """
-            SELECT
-                c.customer_name,
-                SUM(o.total_amount) AS total
-            FROM
-                customers c
-            LEFT JOIN
-                orders o ON c.customer_id = o.customer_id
-            WHERE
-                EXTRACT(MONTH FROM o.order_date) = %s
-            GROUP BY
-                c.customer_name;"""
-        month_formated = '{:02d}'.format(month)
-        cur.execute(query, (month_formated,))
-        result = []
-        for row in cur:
-            customer_name = row['customer_name']
-            total = row['total']
-            result.append(template(customer=customer_name, total=total))
-    conn.commit()
+# def get_order_sum(conn, month):
+#     template = "Покупатель {customer} совершил покупок на сумму {total}".format
+#     with conn.cursor(cursor_factory=DictCursor) as cur:
+#         query = """
+#             SELECT
+#                 c.customer_name,
+#                 SUM(o.total_amount) AS total
+#             FROM
+#                 customers c
+#             LEFT JOIN
+#                 orders o ON c.customer_id = o.customer_id
+#             WHERE
+#                 EXTRACT(MONTH FROM o.order_date) = %s
+#             GROUP BY
+#                 c.customer_name;"""
+#         month_formated = '{:02d}'.format(month)
+#         cur.execute(query, (month_formated,))
+#         result = []
+#         for row in cur:
+#             customer_name = row['customer_name']
+#             total = row['total']
+#             result.append(template(customer=customer_name, total=total))
+#     conn.commit()
 
-    return '\n'.join(result)
+#     return '\n'.join(result)
 # END reference solution

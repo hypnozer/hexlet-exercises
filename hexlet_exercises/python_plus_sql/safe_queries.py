@@ -55,21 +55,21 @@ def get_all_products(conn):
 # END
 
 # BEGIN reference solution
-def batch_insert(conn, products):
-    with conn.cursor() as cur:
-        values = [(p['name'], p['price'], p['quantity']) for p in products]
+# def batch_insert(conn, products):
+#     with conn.cursor() as cur:
+#         values = [(p['name'], p['price'], p['quantity']) for p in products]
 
-        insert_query = "INSERT INTO products (name, price, quantity) VALUES %s"
+#         insert_query = "INSERT INTO products (name, price, quantity) VALUES %s"
 
-        execute_values(cur, insert_query, values)
-    conn.commit()
+#         execute_values(cur, insert_query, values)
+#     conn.commit()
 
 
-def get_all_products(conn):
-    with conn.cursor() as cur:
-        sql = "SELECT * FROM products ORDER BY price DESC;"
-        cur.execute(sql)
-        result = cur.fetchall()
-    conn.commit()
-    return result
+# def get_all_products(conn):
+#     with conn.cursor() as cur:
+#         sql = "SELECT * FROM products ORDER BY price DESC;"
+#         cur.execute(sql)
+#         result = cur.fetchall()
+#     conn.commit()
+#     return result
 # END reference solution
